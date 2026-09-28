@@ -1,0 +1,45 @@
+joint_velocity_controller:
+  ros__parameters:
+    type: iitgn_controllers/JointVelocityController
+
+impedance_controller:
+  ros__parameters:
+    arm_id: "fr3"
+    type: iitgn_controllers/ImpedanceController
+
+    # Keep existing pub-sub API for pose / joint / config:
+    command_topic: "/impedance_command"
+    # Subscribed topics used internally:
+    #   /impedance_command          (geometry_msgs/PoseStamped)
+    #   /impedance_command_joint    (sensor_msgs/JointState)
+    #   /impedance_command_config   (std_msgs/String)
+
+    # Embedded bridge input (your existing velocity scripts publish here):
+    cmd_topic: "/NS_1/joint_velocity_controller/commands"
+    # Expected message: std_msgs/Float64MultiArray (size 7) representing joint velocities
+
+    # Gains (set k=0 if you want pure damping / compliance-like behavior)
+    k_gains: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    d_gains: [15.0, 15.0, 15.0, 15.0, 8.0, 8.0, 8.0]
+    m_gains: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+
+    # IMPORTANT: must match the strings in your C++:
+    impedance_mode: "compliant_motion"   # position_impedance | trajectory_impedance | sinusoidal_impedance | compliant_motion
+
+    compliance_factor: 0.5
+    motion_amplitude: 0.3
+    motion_frequency: 0.2
+
+    # Used in POSITION / TRAJECTORY modes (and as "home" target sometimes)
+    target_position: [0.0, -0.785, 0.0, -2.356, 0.0, 1.571, 0.785]
+
+    # Used for smooth external point-to-point commands
+    trajectory_duration: 5.0
+
+    # Used by applyVelocityFilter(alpha)
+    velocity_filter_alpha: 0.1
+
+cartesian_velocity_controller:
+    ros__parameters:
+      type: iitgn_controllers/CartesianVelocityController
+      arm_id: "fr3"

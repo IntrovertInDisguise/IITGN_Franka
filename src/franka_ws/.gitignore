@@ -1,0 +1,62 @@
+# -----------------------
+# Environment / IDE stuff
+# -----------------------
+.env
+.idea/
+.vscode/
+*.pyc
+*.swp
+*.swo
+
+# -----------------------
+# Colcon / ament markers
+# -----------------------
+COLCON_IGNORE
+AMENT_IGNORE
+
+# -----------------------
+# Build artifacts (if ever created here)
+# -----------------------
+cmake-build-*/
+build/
+install/
+log/
+
+# -----------------------
+# Repo infra / tooling we don't care to track
+# -----------------------
+.devcontainer/
+.github/
+.clang-format
+.clang-tidy
+
+# -----------------------
+# Upstream / vendor Franka packages in this repo
+# (we don't edit these here)
+# -----------------------
+CHANGELOG.rst
+CONTRIBUTING.md
+docker-compose.yml
+Dockerfile
+docs/
+example_scripts/
+franka_bringup/
+franka_description/
+franka_entrypoint.sh
+franka_example_controllers/
+franka_fr3_moveit_config/
+franka_gazebo/
+franka_gripper/
+franka_hardware/
+franka_msgs/
+franka.repos
+franka_robot_state_broadcaster/
+franka_ros2/
+franka_semantic_components/
+integration_launch_testing 
+Jenkinsfile
+limits.conf
+LICENSE
+NOTICE
+README.md
+libfranka/

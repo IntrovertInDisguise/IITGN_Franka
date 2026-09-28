@@ -1,8 +1,19 @@
+# Python virtual environment
+.venv/
+
+# ROS 2 generated files
 build/
 install/
 log/
+
+# Experimental/runtime logs
+src/touch_intelligence/src/logs/
+
+# CSV/data logs
+*.csv
+
+# Nested Git metadata/backups
+.git.backup/
+src/.git.backup/
+src/**/.git.backup/
 *.deb
-__pycache__/
-*.pyc
-.vscode/
-.idea/

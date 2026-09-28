@@ -1,0 +1,367 @@
+# Namespace-agnostic configuration file for Franka FR3.
+# Works both with and without namespace, using /** blocks.
+
+# ============================================================
+# Controller manager + controller type registrations
+# ============================================================
+#cp ~/Debojit_WS/franka_ros2_ws/src/franka_ws/franka_iitgn_bringup/config/controllers.yaml \
+#   ~/Debojit_WS/franka_ros2_ws/install/franka_iitgn_bringup/share/franka_iitgn_bringup/config/controllers.yaml
+/**:
+  controller_manager:
+    ros__parameters:
+      update_rate: 1000
+      thread_priority: 98
+
+      # ---------------------------
+      # Franka example controllers
+      # ---------------------------
+      cartesian_elbow_example_controller:
+        type: franka_example_controllers/CartesianElbowExampleController
+
+      cartesian_orientation_example_controller:
+        type: franka_example_controllers/CartesianOrientationExampleController
+
+      cartesian_pose_elbow_example_controller:
+        type: franka_example_controllers/CartesianElbowExampleController
+
+      cartesian_pose_example_controller:
+        type: franka_example_controllers/CartesianPoseExampleController
+
+      cartesian_velocity_example_controller:
+        type: franka_example_controllers/CartesianVelocityExampleController
+
+      elbow_example_controller:
+        type: franka_example_controllers/ElbowExampleController
+
+      gravity_compensation_example_controller:
+        type: franka_example_controllers/GravityCompensationExampleController
+
+      gripper_example_controller:
+        type: franka_example_controllers/GripperExampleController
+
+      joint_impedance_example_controller:
+        type: franka_example_controllers/JointImpedanceExampleController
+
+      joint_impedance_with_ik_example_controller:
+        type: franka_example_controllers/JointImpedanceWithIKExampleController
+
+      joint_position_example_controller:
+        type: franka_example_controllers/JointPositionExampleController
+
+      joint_velocity_example_controller:
+        type: franka_example_controllers/JointVelocityExampleController
+
+      model_example_controller:
+        type: franka_example_controllers/ModelExampleController
+
+      move_to_start_example_controller:
+        type: franka_example_controllers/MoveToStartExampleController
+
+      # ---------------------------
+      # Broadcasters
+      # ---------------------------
+      franka_robot_state_broadcaster:
+        type: franka_robot_state_broadcaster/FrankaRobotStateBroadcaster
+        state_interfaces: [robot_state]
+
+      joint_state_broadcaster:
+        type: joint_state_broadcaster/JointStateBroadcaster
+
+      # ---------------------------
+      # IITGN controllers
+      # ---------------------------
+      cartesian_velocity_controller:
+        type: iitgn_controllers/CartesianVelocityController
+
+      joint_velocity_controller:
+        type: iitgn_controllers/JointVelocityController
+
+      joint_position_controller:
+        type: iitgn_controllers/JointPositionController
+
+      impedance_controller:
+        type: iitgn_controllers/ImpedanceController
+
+      gripper_topic_controller:
+        type: iitgn_controllers/GripperTopicController
+
+      move_to_start_controller:
+        type: iitgn_controllers/MoveToStartController
+
+      spring_controller:
+        type: iitgn_controllers/SpringController
+
+
+# ============================================================
+# Common per-controller parameters
+# ============================================================
+
+/**:
+  franka_robot_state_broadcaster:
+    ros__parameters:
+      lock_try_count: 5
+      lock_sleep_interval: 5           # microseconds
+      lock_log_error: true
+      lock_update_success: false
+
+/**:
+  joint_state_broadcaster:
+    ros__parameters:
+      arm_id: "fr3"
+      joints:
+        - fr3_joint1
+        - fr3_joint2
+        - fr3_joint3
+        - fr3_joint4
+        - fr3_joint5
+        - fr3_joint6
+        - fr3_joint7
+
+
+# ============================================================
+# Franka example controller params
+# ============================================================
+
+/**:
+  cartesian_elbow_example_controller:
+    ros__parameters:
+      arm_id: "fr3"
+
+/**:
+  cartesian_orientation_example_controller:
+    ros__parameters:
+      arm_id: "fr3"
+
+/**:
+  cartesian_pose_example_controller:
+    ros__parameters:
+      arm_id: "fr3"
+
+/**:
+  cartesian_velocity_example_controller:
+    ros__parameters:
+      arm_id: "fr3"
+
+/**:
+  elbow_example_controller:
+    ros__parameters:
+      arm_id: "fr3"
+      joints:
+        - fr3_joint1
+        - fr3_joint2
+        - fr3_joint3
+        - fr3_joint4
+        - fr3_joint5
+        - fr3_joint6
+        - fr3_joint7
+
+/**:
+  gravity_compensation_example_controller:
+    ros__parameters:
+      arm_id: "fr3"
+
+/**:
+  joint_position_example_controller:
+    ros__parameters:
+      arm_id: "fr3"
+
+/**:
+  joint_velocity_example_controller:
+    ros__parameters:
+      arm_id: "fr3"
+
+/**:
+  model_example_controller:
+    ros__parameters:
+      arm_id: "fr3"
+
+/**:
+  joint_impedance_example_controller:
+    ros__parameters:
+      arm_id: "fr3"
+      k_gains: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+      d_gains: [2.0, 2.0, 2.0, 1.0, 1.0, 1.0, 0.5]
+
+/**:
+  joint_impedance_with_ik_example_controller:
+    ros__parameters:
+      arm_id: "fr3"
+      k_gains: [600.0, 600.0, 600.0, 600.0, 250.0, 150.0, 50.0]
+      d_gains: [30.0, 30.0, 30.0, 30.0, 10.0, 10.0, 5.0]
+
+/**:
+  move_to_start_example_controller:
+    ros__parameters:
+      k_gains: [600.0, 600.0, 600.0, 600.0, 250.0, 150.0, 50.0]
+      d_gains: [30.0, 30.0, 30.0, 30.0, 10.0, 10.0, 5.0]
+
+
+# ============================================================
+# IITGN controller params
+# ============================================================
+
+/**:
+  cartesian_velocity_controller:
+    ros__parameters:
+      arm_id: "fr3"
+
+/**:
+  joint_velocity_controller:
+    ros__parameters:
+      arm_id: "fr3"
+
+/**:
+  impedance_controller:
+    ros__parameters:
+      arm_id: "fr3"
+
+      # Keep existing pub-sub API for pose / joint / config:
+      command_topic: "/impedance_command"
+      # Subscribed topics used internally:
+      #   /impedance_command          (geometry_msgs/PoseStamped)
+      #   /impedance_command_joint    (sensor_msgs/JointState)
+      #   /impedance_command_config   (std_msgs/String)
+
+      # Embedded bridge input (your existing velocity scripts publish here):
+      cmd_topic: "/NS_1/joint_velocity_controller/commands"
+      # Expected message: std_msgs/Float64MultiArray (size 7) representing joint velocities
+
+      # Gains (set k=0 if you want pure damping / compliance-like behavior)
+      k_gains: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+      d_gains: [2.0, 2.0, 2.0, 1.0, 1.0, 1.0, 0.5]
+      m_gains: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+
+      # IMPORTANT: must match the strings in your C++:
+      impedance_mode: "compliant_motion"   # position_impedance | trajectory_impedance | sinusoidal_impedance | compliant_motion
+
+      compliance_factor: 0.5
+      motion_amplitude: 0.3
+      motion_frequency: 0.2
+
+      # Used in POSITION / TRAJECTORY modes (and as "home" target sometimes)
+      target_position: [0.0, -0.785, 0.0, -2.356, 0.0, 1.571, 0.785]
+
+      # Used for smooth external point-to-point commands
+      trajectory_duration: 5.0
+
+      # Used by applyVelocityFilter(alpha)
+      velocity_filter_alpha: 0.1
+
+
+/**:
+  gripper_topic_controller:
+    ros__parameters:
+      arm_id: "fr3"
+      gripper_command_topic: "~/gripper_command"
+      gripper_open_width: 0.08
+      gripper_close_width: 0.04
+      gripper_speed: 0.1
+      gripper_force: 10.0
+      epsilon_inner: 0.03
+      epsilon_outer: 0.03
+
+/**:
+  move_to_start_controller:
+    ros__parameters:
+      arm_id: "fr3"
+      k_gains: [600.0, 600.0, 600.0, 600.0, 250.0, 150.0, 50.0]
+      d_gains: [30.0, 30.0, 30.0, 30.0, 10.0, 10.0, 5.0]
+
+/**:
+  joint_position_controller:
+    ros__parameters:
+      arm_id: "fr3"
+
+      kp_gains: [400.0, 400.0, 400.0, 400.0, 250.0, 150.0, 50.0]
+      kd_gains: [30.0, 30.0, 30.0, 30.0, 20.0, 15.0, 5.0]
+      ki_gains: [10.0, 10.0, 10.0, 10.0, 5.0, 5.0, 2.0]
+
+      target_position: [0.0, -0.785, 0.0, -2.356, 0.0, 1.571, 0.785]
+      control_mode: "position_control"
+
+      trajectory_duration: 5.0
+
+      motion_amplitude: 0.5
+      motion_frequency: 0.2
+
+      command_topic: "/joint_position_command"
+
+
+# ============================================================
+# Spring controller (Cartesian Impedance)
+# ALL parameters read from here — no rebuild needed to change them.
+# Verify active values in the startup log after launching.
+# ============================================================
+
+/**:
+  spring_controller:
+    ros__parameters:
+      # Robot identification — must match robot_description
+      arm_id: "fr3"
+
+      # ---- Controller mode --------------------------------------------------
+      # position_impedance   : hold the EE pose captured at activation
+      # trajectory_impedance : smooth min-jerk move to external target
+      # compliant_motion     : low stiffness, easily backdriveable
+      impedance_mode: "position_impedance"
+
+      # ---- Cartesian stiffness [tx, ty, tz, rx, ry, rz] --------------------
+      # Translation: N/m  |  Rotation: Nm/rad
+      # Rule: always keep damping = 2*sqrt(stiffness) per DOF (critical damping)
+      # Lower = more compliant (softer spring)
+      # Higher = stiffer (follows desired pose more tightly)
+      cartesian_stiffness: [270.0, 270.0, 280.0, 15.0, 15.0, 15.0]
+      #cartesian_stiffness: [0.0, 50.0, 1000.0, 15.0, 15.0, 15.0]
+      # ---- Cartesian damping [tx, ty, tz, rx, ry, rz] ----------------------
+      # Must satisfy D = 2*sqrt(K) for critical damping (no overshoot, no oscillation)
+      # 2*sqrt(150) = 24.49  |  2*sqrt(15) = 7.75
+      cartesian_damping: [25.0, 25.0, 27.0, 7.75, 7.75, 7.75]
+      #cartesian_damping: [0.0, 50.5, 0.5, 7.75, 7.75, 7.75]
+      # ---- Nullspace control ------------------------------------------------
+      # Keeps the elbow near q_d_nullspace without disturbing the EE position.
+      nullspace_stiffness: 0.5
+      # FR3 standard ready pose [rad]
+      q_d_nullspace: [0.0, -0.785, 0.0, -2.356, 0.0, 1.571, 0.785]
+
+      # ---- Pose filter gain -------------------------------------------------
+      # How fast the filtered desired pose tracks the raw target.
+      # Too small (0.005): 200ms lag → oscillatory catch-up → JERK
+      # Too large (1.0):   no smoothing → torque spikes → JERK
+      # 0.05 = ~20ms lag — good balance
+      filter_gain: 0.05
+
+      # ---- Velocity filter --------------------------------------------------
+      # Low-pass filter on measured joint velocities used in damping term.
+      # Too small (0.1): 16 Hz cutoff — damping too slow → JERK
+      # Too large (1.0): no filtering — noisy torques → JERK
+      # 0.3 ≈ 48 Hz cutoff — good balance
+      velocity_filter_alpha: 0.1
+
+      # ---- Torque rate limit [Nm per 1ms cycle] ----------------------------
+      # Clamps how fast torque can change each cycle. Prevents mechanical shock.
+      delta_tau_max: 1.0
+
+      # ---- Command timeout [s] ---------------------------------------------
+      # If no velocity command received for this duration, dq_cmd is zeroed
+      # and desired pose is snapped to current EE pose → clean stop, no drift.
+      # 0.025 = 25ms = 5 publisher cycles at 200Hz. Reduce if you need faster
+      # stop response; increase if you r publisher is slower than 200Hz.
+      cmd_timeout_sec: 0.025
+
+      # ---- Compliant motion -------------------------------------------------
+      # Scales stiffness by this factor in compliant_motion mode (0.0 - 2.0).
+      # Damping is scaled by sqrt(factor) to preserve critical damping ratio.
+      compliance_factor: 0.5
+
+      # ---- Trajectory duration [s] ------------------------------------------
+      # Duration for smooth min-jerk moves in trajectory_impedance mode.
+      trajectory_duration: 5.0
+
+      # ---- Topics -----------------------------------------------------------
+      # Base topic for direct Cartesian pose commands (PoseStamped),
+      # joint commands (_joint suffix), and config strings (_config suffix).
+      command_topic: "/spring_command"
+
+      # Joint velocity commands from Python pick-and-place scripts.
+      # Must match the topic your scripts publish to.
+      cmd_topic: "/NS_1/joint_velocity_controller/commands"

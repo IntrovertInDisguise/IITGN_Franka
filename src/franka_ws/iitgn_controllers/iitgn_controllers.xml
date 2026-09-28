@@ -1,0 +1,60 @@
+<library path="iitgn_controllers">
+  <class name="iitgn_controllers/JointVelocityController"
+         type="iitgn_controllers::JointVelocityController"
+         base_class_type="controller_interface::ControllerInterface">
+    <description>
+      Joint Velocity Controller for IITGN robots to command velocity on joints.
+    </description>
+  </class>
+  <class name="iitgn_controllers/JointPositionController"
+         type="iitgn_controllers::JointPositionController"
+         base_class_type="controller_interface::ControllerInterface">
+    <description>
+      Joint Position Controller for IITGN robots to command position on joints.
+    </description>
+  </class>
+  <class name="iitgn_controllers/CartesianVelocityController"
+         type="iitgn_controllers::CartesianVelocityController"
+         base_class_type="controller_interface::ControllerInterface">
+    <description>
+      Cartesian Velocity Controller for IITGN robots to command velocity in Cartesian space.
+    </description>
+  </class>
+  <class name="iitgn_controllers/ImpedanceController"
+         type="iitgn_controllers::ImpedanceController"
+         base_class_type="controller_interface::ControllerInterface">
+    <description>
+      IITGN Impedance Controller for Franka Emika robots with multiple impedance control modes.
+    </description>
+  </class>
+  <class name="iitgn_controllers/GripperTopicController"
+         type="iitgn_controllers::GripperTopicController"
+         base_class_type="controller_interface::ControllerInterface">
+    <description>
+      Topic-based gripper controller for Franka robots.
+    </description>
+  </class>
+  <class name="iitgn_controllers/GripperWidthController"
+         type="iitgn_controllers::GripperWidthController"
+         base_class_type="controller_interface::ControllerInterface">
+    <description>
+      Gripper controller that sends grasp or move action based on width.
+    </description>
+  </class>
+  <class name="iitgn_controllers/MoveToStartController"
+         type="iitgn_controllers::MoveToStartController"
+         base_class_type="controller_interface::ControllerInterface">
+    <description>
+      Move to start controller that moves the robot to a predefined start position.
+    </description>
+  </class>
+  <class name="iitgn_controllers/SpringController"
+         type="iitgn_controllers::SpringController"
+         base_class_type="controller_interface::ControllerInterface">
+    <description>
+      IITGN Cartesian impedance (spring) controller for Franka FR3.
+      Accepts joint velocity commands (same topic as joint_velocity_controller) and
+      produces compliant Cartesian torques via F = K*dx - D*xdot, tau = J^T*F + coriolis + nullspace.
+    </description>
+  </class>
+</library>
